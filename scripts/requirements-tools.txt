@@ -1,0 +1,5 @@
+# Solo utilidades de diagnóstico/documentación; no son dependencias del APK.
+pypdf==6.19.0
+qrcode==8.2
+zxing-cpp==2.3.0
+Pillow>=10.4

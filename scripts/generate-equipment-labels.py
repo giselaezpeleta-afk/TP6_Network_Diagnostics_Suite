@@ -1,0 +1,19 @@
+"""Genera etiquetas reproducibles; los QR contienen IDs, nunca credenciales."""
+from pathlib import Path
+import qrcode
+import qrcode.image.svg
+
+root = Path(__file__).resolve().parent.parent / 'docs' / 'etiquetas'
+root.mkdir(parents=True, exist_ok=True)
+for identifier in ('router-casa', 'tp6-lab'):
+    qr = qrcode.make(identifier, image_factory=qrcode.image.svg.SvgPathImage, box_size=10, border=4)
+    qr.save(str(root / f'{identifier}.svg'))
+(root / 'imprimir.html').write_text('''<!doctype html>
+<html lang="es"><meta charset="utf-8"><title>Etiquetas TP6</title>
+<style>body{font-family:system-ui;margin:40px}article{display:inline-block;text-align:center;border:1px solid #aaa;padding:24px;margin:12px}img{width:220px;height:220px}p{max-width:650px}</style>
+<h1>Identificación de equipos · TP6</h1>
+<p>Imprimir o mostrar en la PC y fotografiar el código desde Equipos → QR. El servidor debe estar configurado para descargar la ficha por primera vez; después queda disponible sin conexión.</p>
+<article><img src="router-casa.svg" alt="QR router-casa"><h2>Router de casa</h2><code>router-casa</code></article>
+<article><img src="tp6-lab.svg" alt="QR tp6-lab"><h2>Laboratorio TP6</h2><code>tp6-lab</code></article>
+</html>''', encoding='utf-8')
+print('Etiquetas guardadas en docs/etiquetas/imprimir.html')

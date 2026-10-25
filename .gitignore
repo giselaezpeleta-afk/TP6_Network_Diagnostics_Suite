@@ -1,0 +1,19 @@
+# Dependencias y resultados generados: no forman parte de la entrega de código.
+**/node_modules/
+**/.gradle/
+**/.cxx/
+**/.kotlin/
+.gradle-local/
+**/build/
+**/Pods/
+**/__pycache__/
+.venv/
+coverage/
+.tools/
+**/.tools/
+.downloads/
+# Rutas de SDK propias de cada computadora y credenciales locales.
+**/local.properties
+.env
+.env.*
+!.env.example
